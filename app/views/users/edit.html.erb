@@ -1,0 +1,9 @@
+<h3>Edit Profile</h3>
+
+  <%= form_with model: @user, local: true do |f| %>
+  <div class="field">
+    <%= f.label "Username:" %> <br>
+    <%= f.text_field :username %>
+    <%= f.submit "Update Profile" %>
+    </div>
+    <% end %>
