@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :stocks
   end
   root 'welcome#index'
+  post '/' => 'welcome#index'
 end

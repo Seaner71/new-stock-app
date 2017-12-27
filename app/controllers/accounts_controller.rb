@@ -26,6 +26,11 @@ class AccountsController < ApplicationController
 
   def edit
   end
+  def destroy
+    get_account
+    @account.destroy
+      redirect_to accounts_path
+  end
   private
 
   def account_params

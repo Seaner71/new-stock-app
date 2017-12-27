@@ -1,8 +1,5 @@
-<h1>Accounts#show</h1>
-<p>Find me in app/views/accounts/show.html.erb</p>
-
-  <%= @account.name %>
-  <%= @account.created_at %>
+<h1><%= @account.name %> Account</h1>
+<li><%= link_to "Delete account", account_path, method: :delete %></li>
   <% @account.stocks.each do |stock| %>
       <%= stock.ticker %>
   <% end %>
