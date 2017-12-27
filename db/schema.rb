@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221224305) do
+ActiveRecord::Schema.define(version: 20171226230616) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20171221224305) do
     t.integer "shares"
     t.string "sname"
     t.string "name"
+    t.integer "user_id"
+  end
+
+  create_table "stocks_users", id: false, force: :cascade do |t|
+    t.integer "stock_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -2,4 +2,9 @@
 <p>Find me in app/views/accounts/show.html.erb</p>
 
   <%= @account.name %>
-  <%= @account.created_at %>  
+  <%= @account.created_at %>
+  <% @account.stocks.each do |stock| %>
+      <%= stock.ticker %>
+  <% end %>
+<%# link_to "add a stock", new_account_stock_path(@account) %>
+     <%= render 'stocks/new' %>
