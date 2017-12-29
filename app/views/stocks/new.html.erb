@@ -1,6 +1,20 @@
 <h1>Add A Stock</h1>
 
   <%= form_with(model: [@account, @account.stocks.build]) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="explain_error">
+      <h2>
+        Uh oh!
+        <%= pluralize(@account.errors.count, "error") %>
+        prohibited this post from being saved:
+      </h2>
+      <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.label :ticker %> <br>
     <%= f.text_field :ticker %>

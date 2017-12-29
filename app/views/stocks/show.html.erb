@@ -1,2 +1,7 @@
 <h1>Stocks#show</h1>
 <p>Find me in app/views/stocks/show.html.erb</p>
+
+<%= button_to "Delete Stock", account_stock_path, method: :delete, class: 'btn btn-danger' %>
+
+<%= @stock.id %>
+<%= @stock.ticker %>

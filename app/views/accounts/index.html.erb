@@ -21,10 +21,28 @@
           <% if a.stocks.empty? %>
             <li class="list-group-item"><%= 'No Stocks yet.' %></li>
           <% end %>
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Company Name</th>
+                <th>Ticker</th>
+                <th>Shares</th>
+                <th>Sector</th>
+                <th>Current Price</th>
+                <th>Market Value</th>
+              </tr>
+            </thead>
+          <tbody>
           <% a.stocks.each do |s| %>
-          <li class="list-group-item"><%= s.ticker %></li>
+          <% @stock_quote = StockQuote::Stock.quote(s.ticker) %>
+          <tr>
+          <td><%= link_to  @stock_quote.name, account_stock_path(a,s) %></td>
+          <td><%= s.ticker.upcase %></td>
+          <td><%= s.shares %></td>
+          </tr>
           <% end %>
-
+        </tbody>
+          </table>
         </ul>
       </div>
     </div>

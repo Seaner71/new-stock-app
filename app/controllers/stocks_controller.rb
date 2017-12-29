@@ -4,6 +4,7 @@ class StocksController < ApplicationController
     @stocks = @account.stocks.all
   end
   def new
+    get_account
     @stock = Stock.new
   end
   def create
@@ -15,6 +16,13 @@ class StocksController < ApplicationController
     end
   end
   def show
+    get_account
+    get_stock
+  end
+  def destroy
+    get_stock
+    @stock.destroy
+      redirect_to accounts_path
   end
   private
 
