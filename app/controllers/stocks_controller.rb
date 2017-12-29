@@ -18,6 +18,7 @@ class StocksController < ApplicationController
   def show
     get_account
     get_stock
+    @stock_quote = StockQuote::Stock.quote(@stock.ticker)
   end
   def destroy
     get_stock
