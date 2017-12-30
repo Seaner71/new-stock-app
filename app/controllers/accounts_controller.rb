@@ -25,7 +25,17 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    get_user
+    get_account
   end
+
+  def update
+    get_user
+    get_account
+    @account.update(account_params)
+    redirect_to account_path(@account)
+  end
+
   def destroy
     get_account
     @account.destroy

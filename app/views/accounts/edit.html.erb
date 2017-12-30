@@ -1,2 +1,23 @@
-<h1>Accounts#edit</h1>
-<p>Find me in app/views/accounts/edit.html.erb</p>
+<%= form_with model: @account, local: true do |f| %>
+      <% if @account.errors.any? %>
+        <div id="explain_error">
+          <h2>
+            Uh oh!
+            <%= pluralize(@account.errors.count, "error") %>
+            prohibited this post from being saved:
+          </h2>
+          <ul>
+            <% @account.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div>
+        <%= f.label "Name:" %>
+        <%= f.text_field :name %>
+        <br>
+      </div>
+
+        <%= f.submit "edit account", class: 'btn btn-primary'%>
+      <% end %>
