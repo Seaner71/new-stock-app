@@ -32,16 +32,24 @@
                 <th>Market Value</th>
               </tr>
             </thead>
-          <tbody>
-          <% a.stocks.each do |s| %>
-          <% @stock_quote = StockQuote::Stock.quote(s.ticker) %>
-          <tr>
-          <td><%= link_to  @stock_quote.name, account_stock_path(a,s) %></td>
-          <td><%= s.ticker.upcase %></td>
-          <td><%= s.shares %></td>
-          </tr>
-          <% end %>
-        </tbody>
+            <tbody>
+              <% a.stocks.each do |s| %>
+              <% @stock_quote = StockQuote::Stock.quote(s.ticker) %>
+              <tr>
+                <td><%= link_to  @stock_quote.name, account_stock_path(a,s) %></td>
+                <td><%= s.ticker.upcase %></td>
+                <td><%= s.shares %></td>
+                <td><%= s.sname %></td>
+                <%# if stock.last_price != nil %>
+                  <%# stock.last_price %>
+                <%# else %>
+                  <td><%= @stock_quote.l %></td>
+                <%# end %>
+               <% @market_value = (s.shares * @stock_quote.l.gsub(/[^\d^\.]/, '').to_f)%>
+                <td> <%= number_to_currency(@market_value) %></td>
+              </tr>
+              <% end %>
+          </tbody>
           </table>
         </ul>
       </div>

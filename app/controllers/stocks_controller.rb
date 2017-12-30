@@ -11,6 +11,8 @@ class StocksController < ApplicationController
     get_account
     @stock = @account.stocks.new(stock_params)
     @stock.user_id = current_user.id
+    @stock.sname = StockQuote::Stock.quote(params['stock'][:ticker]).sname
+    @stock.name = StockQuote::Stock.quote(params['stock'][:ticker]).name
     if @stock.save
       redirect_to account_path(@account)
     end
@@ -19,8 +21,10 @@ class StocksController < ApplicationController
     get_account
     get_stock
     @stock_quote = StockQuote::Stock.quote(@stock.ticker)
+    @stock_test_hash = Hash[@account.stocks.group(:sname).sum(:shares).map { |k, v| [k, v * 5] }]
   end
   def destroy
+    get_account
     get_stock
     @stock.destroy
       redirect_to accounts_path
