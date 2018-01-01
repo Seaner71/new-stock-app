@@ -7,47 +7,145 @@
 
   </div>
 <% end %>
-
 <br>
 <% if @stock %>
-  <div class="row">
-    <div class="col-md-6">
-      <%= @stock.name %> <br>
-      <%= @stock.symbol %> <br>
-      <%= @stock.op %> <br>
-      <%= @stock.eps %> <br>
-      <%= @stock.exchange %> <br>
-      <%= @stock.beta %> <br>
-      <%= @stock.sname %> <br>
-      <%= @stock.l.to_f %>
-    </div>
-    <div class="col-md-6">
-      <% @stock.management.each do |m| %>
-        <%= m['name'] %> | <%= m['title'] %>
-        <br>
-        <% end %>
-    </div>
-    <div class="col-md-6">
-      <%= @stock.name %> <br>
-      <%= @stock.symbol %> <br>
-      <%= @stock.op %> <br>
-      <%= @stock.eps %> <br>
-      <%= @stock.exchange %> <br>
-      <%= @stock.beta %> <br>
-      <%= @stock.sname %> <br>
-      <%= @stock.l.to_f %>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2">Basic Information</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Company Name:</td>
+                <td><%=@stock.name%></td>
+              </tr>
+              <tr>
+                <td>Company Symbol:</td>
+                <td><%=@stock.symbol%></td>
+              </tr>
+              <tr>
+                <td>Current Price:</td>
+                <td><%= @stock.l %></td>
+              </tr>
+              <tr>
+                <td>52 Week High Price:</td>
+                <td><%= @stock.hi52 %></td>
+              </tr>
+              <tr>
+                <td>52 Week Low Price:</td>
+                <td><%= @stock.lo52 %></td>
+              </tr>
+              <tr>
+                <td>Company Sector:</td>
+                <td><%= @stock.sname %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2">Financial Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Earnings Per Share: </td>
+                <td><%= @stock.eps %></td>
+              </tr>
+              <tr>
+                <td>Price/Earnings: </td>
+                <td><%= @stock.pe %></td>
+              </tr>
+              <tr>
+                <td>Forward Price/Earnings: </td>
+                <td><%= @stock.fwpe %></td>
+              </tr>
+              <% x = @stock.financials[0]['f_figures'].map {|x| x['recent_quarter'] }.map.with_index {|y,i| y if i == 2 || i == 3 || i ==4 }.compact %>
+              <tr>
+                <td> Revenue : </td>
+                <td><%= x[0] %></td>
+              </tr>
+              <tr>
+                <td> Revenue : </td>
+                <td><%= x[1] %></td>
+              </tr>
+              <tr>
+                <td> Revenue : </td>
+                <td><%= x[2] %></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2">Competitors</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% @stock.related.each do |comp| %>
+                <tr>
+                  <td><%= comp['name'] %> </td>
+                  <td><%=comp['t'] %></td>
+                </tr>
+                  <% end %>
+                <tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2">Company Management</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @stock.management.each do |m| %>
+              <tr>
+                <td><%= m['name'] %> </td>
+                <td><%= m['title'] %></td>
+              </tr>
+                <% end %>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
-  <%# @stock.moreresources%>
-      <br>
+<%# @stock.moreresources%>
+    <br>
       <% x = @stock.financials[0]['f_figures'].map {|x| x['recent_quarter'] }.map.with_index {|y,i| y if i == 2 || i == 3 || i ==4 }.compact %>
 <%= @stock.exchange %>
 <br>
 <br>
-  <a href="<%= @stock.f_reuters_url %>", target="_blank"><%= @stock.name %> | Rueters</a>
+<a href="<%= @stock.f_reuters_url %>", target="_blank"><%= @stock.name %> | Rueters</a>
 <br>
 <%# @stock.f_recent_quarter_date %>
 <%# @stock.f_annlyal_date %>
@@ -76,10 +174,15 @@
 <%= @stock.sid %>
 <%= @stock.iid %>
 <%= @stock.iname %>
-
-  <%# @stock.related %>
+<br>
+<br>
+<%= @stock.related %>
+<% @stock.related.each do |comp|%>
+<li><%= comp['name'] %></li>
+<%end %>
 <%# @stock.summary %>
 <%# @stock.events%>
+
 
 <% elsif @nothing %>
   <%= @nothing %>

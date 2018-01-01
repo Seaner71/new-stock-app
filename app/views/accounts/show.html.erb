@@ -17,7 +17,7 @@
                <% @stock_quote = StockQuote::Stock.quote(stock.ticker) %>
              <tr>
                <td><%= link_to @stock_quote.name, account_stock_path(@account,stock) %></td>
-               <td><%= stock.ticker.upcase %></td>
+               <td><%= stock.ticker %></td>
                <td><%= stock.shares %></td>
                <td><%= stock.sname %></td>
                <%# if stock.last_price != nil %>
