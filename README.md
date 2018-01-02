@@ -1,24 +1,34 @@
-# README
+# Stocker
+Is an application for user to track their different stock portfolios. All stock data is obtained from the stock_quote gem
+built by Ty Rauber https://github.com/tyrauber/stock_quote. A user can set up multiple accounts and monitor the value of each account,
+the percentage of each stock in the account and the percentage of each sector.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Stocker was developed in Ruby on Rails 5.1 and requires the installation of the follow non-rails standard gems:
 
-Things you may want to cover:
+gem 'devise'
+gem 'pry'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'jquery-rails'
+gem 'stock_quote', '~> 1.5', '>= 1.5.4'
+gem 'wdm'
+gem "chartkick"
 
-* Ruby version
+**Run on your computer:**
 
-* System dependencies
 
-* Configuration
+From your project folder, clone the git repository:
 
-* Database creation
+	git clone https://github.com/Seaner71/new-stock-app.git
 
-* Database initialization
+Open the project folder:
 
-* How to run the test suite
+	cd new-stock-app
+  Install all dependencies:
 
-* Services (job queues, cache servers, search engines, etc.)
+	bundle install
 
-* Deployment instructions
+Run the application:
 
-* ...
+	rails server
+
+To see the application in action, open a browser window and navigate to [http://localhost:3000](http://localhost:3000).
