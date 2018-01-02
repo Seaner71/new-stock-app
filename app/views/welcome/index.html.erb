@@ -64,21 +64,21 @@
                 <td><%= @stock.eps %></td>
               </tr>
               <tr>
-                <td>Price/Earnings: </td>
+                <td>Price/Earnings Ratio: </td>
                 <td><%= @stock.pe %></td>
               </tr>
               <tr>
-                <td>Forward Price/Earnings: </td>
-                <td><%= @stock.fwpe %></td>
+                <td>Dividend Yield: </td>
+                <td><%= number_to_percentage(@stock.dy) %></td>
               </tr>
               <% x = @stock.financials[0]['f_figures'].map {|x| x['recent_quarter'] }.map.with_index {|y,i| y if i == 2 || i == 3 || i ==4 }.compact %>
               <tr>
-                <td> Revenue : </td>
-                <td><%= x[0] %></td>
+                <td> Market Capitalization: </td>
+                <td><%= @stock.mc%></td>
               </tr>
               <tr>
                 <td> Revenue : </td>
-                <td><%= x[1] %></td>
+                <td><%= x[0] %></td>
               </tr>
               <tr>
                 <td> Revenue : </td>
@@ -137,50 +137,6 @@
   </div>
 </div>
 
-
-
-<%# @stock.moreresources%>
-    <br>
-      <% x = @stock.financials[0]['f_figures'].map {|x| x['recent_quarter'] }.map.with_index {|y,i| y if i == 2 || i == 3 || i ==4 }.compact %>
-<%= @stock.exchange %>
-<br>
-<br>
-<a href="<%= @stock.f_reuters_url %>", target="_blank"><%= @stock.name %> | Rueters</a>
-<br>
-<%# @stock.f_recent_quarter_date %>
-<%# @stock.f_annlyal_date %>
-<%# @stock.f_ttm_date %>
-<%# @stock.financials %>
-<br>
-<%= @stock.pe %>
-<br>
-<%= @stock.vo %>
-<br>
-<%= @stock.iname %>
-<br>
-
-
-
-<%= @stock.mc %>
-
-<%= @stock.fwpe %>
-<%= @stock.beta %>
-<%= @stock.eps %>
-<%= @stock.dy %>
-<%= @stock.ldiv %>
-<%= @stock.shares %>
-<%= @stock.instown %>
-<%= @stock.eo %>
-<%= @stock.sid %>
-<%= @stock.iid %>
-<%= @stock.iname %>
-<br>
-<br>
-<%= @stock.related %>
-<% @stock.related.each do |comp|%>
-<li><%= comp['name'] %></li>
-<%end %>
-<%# @stock.summary %>
 <%# @stock.events%>
 
 

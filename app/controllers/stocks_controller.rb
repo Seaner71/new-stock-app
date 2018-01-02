@@ -23,6 +23,18 @@ class StocksController < ApplicationController
     @stock_quote = StockQuote::Stock.quote(@stock.ticker)
     @stock_test_hash = Hash[@account.stocks.group(:sname).sum(:shares).map { |k, v| [k, v * 5] }]
   end
+  def edit
+    get_account
+    get_stock
+  end
+
+  def update
+    get_account
+    get_stock
+    @stock.update(stock_params)
+    redirect_to account_stock_path(@stock)
+  end
+
   def destroy
     get_account
     get_stock

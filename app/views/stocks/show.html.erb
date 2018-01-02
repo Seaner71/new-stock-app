@@ -19,13 +19,62 @@
       <div class="col-8">
           <%= @stock_quote.summary[0]['overview'] if @stock_quote.summary %>
       </div>
-    </div>    
+    </div>
   </div>
   <div class="card-footer text-muted">
-    <p>
-      <%= link_to 'Edit',  edit_account_stock_path(@account,@stock), class: 'btn btn-default'  %>
-      <%= link_to 'Back', account_path(@account), class: 'btn btn-default' %>
-      <%= button_to "Delete Stock", account_stock_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-    </p>
+      <%# link_to 'Edit Stock',  edit_account_stock_path(@account,@stock), class: 'btn btn-primary'  %>
+      <%= link_to 'Back', account_path(@account), class: 'btn btn-primary' %>
+      <%= link_to "Delete Stock", account_stock_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+</div>
+<%#= Price chart tabs  %>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="mtd-tab" data-toggle="tab" href="#mtd" role="tab" aria-controls="mtd" aria-selected="true">MTD</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="ytd-tab" data-toggle="tab" href="#ytd" role="tab" aria-controls="ytd" aria-selected="false">YTD</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="3y-tab" data-toggle="tab" href="#3y" role="tab" aria-controls="3y" aria-selected="false">3Y</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="5y-tab" data-toggle="tab" href="#5y" role="tab" aria-controls="5Y" aria-selected="false">5Y</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="mtd" role="tabpanel" aria-labelledby="mtd-tab">
+  <% @stock_history = StockQuote::Stock.history(@stock.ticker, Date.today.beginning_of_month, Date.today) %>
+    <% @stock_price_hash = {} %>
+      <% @stock_history[:history].each do |day| %>
+      <% @stock_price_hash[day[:date]] = day[:close] %>
+    <% end %>
+      <%= line_chart (@stock_price_hash), xtitle: "Date", ytitle: "Price", height: "500px"  %>
+
+  </div>
+  <div class="tab-pane" id="ytd" role="tabpanel" aria-labelledby="ytd-tab">
+    <% @stock_history = StockQuote::Stock.history(@stock.ticker, Date.today.beginning_of_year, Date.today) %>
+      <% @stock_price_hash = {} %>
+      <% @stock_history[:history].each do |day| %>
+        <% @stock_price_hash[day[:date]] = day[:close] %>
+        <% end %>
+      <%= line_chart (@stock_price_hash), xtitle: "Date", ytitle: "Price", height: "500px"  %>
+      <%= @stock_price_hash.inspect %>
+  </div>
+  <div class="tab-pane" id="3y" role="tabpanel" aria-labelledby="3y-tab">
+    <% @stock_history = StockQuote::Stock.history(@stock.ticker,  Date.today.years_ago(3),  Date.today) %>
+      <% @stock_price_hash = {} %>
+      <% @stock_history[:history].each do |day| %>
+        <% @stock_price_hash[day[:date]] = day[:close] %>
+      <% end %>
+      <%= line_chart (@stock_price_hash), xtitle: "Date", ytitle: "Price", height: "500px"  %>
+  </div>
+  <div class="tab-pane" id="5y" role="tabpanel" aria-labelledby="5y-tab">
+    <% @stock_history = StockQuote::Stock.history(@stock.ticker,   Date.today.years_ago(5),  Date.today) %>
+      <% @stock_price_hash = {} %>
+      <% @stock_history[:history].each do |day| %>
+        <% @stock_price_hash[day[:date]] = day[:close] %>
+      <% end %>
+      <%= line_chart (@stock_price_hash), xtitle: "Date", ytitle: "Price", height: "500px"  %>
   </div>
 </div>
