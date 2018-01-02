@@ -6,11 +6,11 @@ the percentage of each stock in the account and the percentage of each sector.
 Stocker was developed in Ruby on Rails 5.1 and requires the installation of the follow non-rails standard gems:
 -	gem 'devise'
 - gem 'pry'
-- gem 'bootstrap', '~> 4.0.0.beta2.1'
-	gem 'jquery-rails'
-	gem 'stock_quote', '~> 1.5', '>= 1.5.4'
-	gem 'wdm'
-	gem "chartkick"
+- gem 'bootstrap', "~> 4.0.0.beta2.1"
+-	gem 'jquery-rails'
+-	gem 'stock_quote', "~> 1.5", ">= 1.5.4"
+-	gem 'wdm'
+-	gem "chartkick"
 
 **Run on your computer:**
 
