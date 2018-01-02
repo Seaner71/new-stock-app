@@ -30,7 +30,11 @@
               </tr>
               <tr>
                 <td>Current Price:</td>
-                <td><%= @stock.l %></td>
+                  <% if @stock.l.to_f >= 0 %>
+                    <td style="color:green;"><%= @stock.l %></td>
+                  <% else %>
+                    <td style="color:red;"><%= @stock.l %></td>
+                  <% end %>
               </tr>
               <tr>
                 <td>52 Week High Price:</td>
