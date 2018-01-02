@@ -1,7 +1,4 @@
-<% if current_user.accounts.empty? %>
-  <%= link_to "Add an account", new_account_path %>
-  <% end %>
-  <div class="content">
+<div class="content">
     <h3>My accounts:</h3>
 
   <% current_user.accounts.each_with_index do |a, index| %>
@@ -9,7 +6,7 @@
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index.to_s%>" aria-expanded="true" aria-controls="collapseOne">
-         <i class="fa fa-tag" aria-hidden="true"></i> <%= a.name %> 
+         <i class="fa fa-tag" aria-hidden="true"></i> <%= a.name %>
         </a>
       </h5>
     </div>
