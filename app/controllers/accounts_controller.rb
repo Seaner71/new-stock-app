@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:name)
+    params.require(:account).permit(:name, :account_type)
   end
   def get_account
     @account = Account.find_by_id(params[:id])
