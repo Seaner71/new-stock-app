@@ -42,11 +42,11 @@
 
 <div class="row">
  <div class="col-6">
-  <% @stock_ticker_hash = Hash[@account.stocks.group(:ticker).sum(:shares).map { |k, v| [k, v * @stock_quote.l.to_f] }] %>
+  <% @stock_ticker_hash = Hash[@account.stocks.group(:ticker).sum(:shares).map { |k, v| [k, v * StockQuote::Stock.quote(k).l.gsub(/[^\d^\.]/, '').to_f]}] %>
   <%= pie_chart @stock_ticker_hash %>
  </div>
  <div class="col-6">
-  <% @stock_sector_hash = Hash[@account.stocks.group(:sname).sum(:shares).map { |k, v| [k, v * @stock_quote.l.to_f] }] %>
+  <% @stock_sector_hash = Hash[@account.stocks.group(:sname).sum(:shares).map { |k, v| [k, v * @stock_quote.l.gsub(/[^\d^\.]/, '').to_f] }] %>
   <%= pie_chart @stock_sector_hash %>
  </div>
 </div>

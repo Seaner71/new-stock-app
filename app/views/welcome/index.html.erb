@@ -86,11 +86,11 @@
               </tr>
               <tr>
                 <td> Revenue Most Recent Quarter: </td>
-                <td><%= x[0] %></td>
+                <td><%= number_with_precision(x[0].gsub(/[^\d^\.]/, '').to_f , :precision => 0, :delimiter => ',')%>M</td>
               </tr>
               <tr>
                 <td> Net Income Most Recent Quarter: </td>
-                <td><%= x[2] %></td>
+                <td><%= number_with_precision(x[2].gsub(/[^\d^\.]/, '').to_f , :precision => 0, :delimiter => ',') %>M</td>
               </tr>
             </tbody>
           </table>
