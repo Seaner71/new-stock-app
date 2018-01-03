@@ -13,6 +13,7 @@ class StocksController < ApplicationController
     @stock.user_id = current_user.id
     @stock.sname = StockQuote::Stock.quote(params['stock'][:ticker]).sname
     @stock.name = StockQuote::Stock.quote(params['stock'][:ticker]).name
+    @stock.price = StockQuote::Stock.quote(params['stock'][:ticker]).l.gsub(/[^\d^\.]/, '').to_f
     if @stock.save
       redirect_to account_path(@account)
     end
@@ -52,6 +53,6 @@ class StocksController < ApplicationController
   end
 
   def stock_params
-    params.require(:stock).permit(:ticker, :shares, :sname, :name)
+    params.require(:stock).permit(:ticker, :shares, :sname, :name, :price)
   end
 end
