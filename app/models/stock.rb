@@ -4,6 +4,7 @@ class Stock < ApplicationRecord
   # validates :ticker, uniqueness: true
   validates :ticker, presence: true, length: { maximum: 6 }
   before_save :upcase_fields
+  scope :sorted, lambda {order(ticker: :asc)}
 
    def upcase_fields
       self.ticker.upcase!
