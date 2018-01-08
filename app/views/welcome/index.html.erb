@@ -8,6 +8,12 @@
   </div>
 <% end %>
 <br>
+<!-- test code for news using IEX API = move into priduction once link Research page to IEX   -->
+<%# @stock.get_news.each do |story| %>
+  <%# link_to story['headline'], story['url'], target: '_blank' %>
+<%# end %>
+<!--  -->
+
 <% if @stock %>
 <div class="row">
   <div class="col-sm-6">
@@ -145,7 +151,7 @@
   </div>
 </div>
 
-<%# @stock.events%>
+
 
 
 <% elsif @nothing %>

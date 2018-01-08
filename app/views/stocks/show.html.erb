@@ -1,6 +1,6 @@
-  <div class="card ">
+<div class="card ">
   <div class="card-header">
-    <strong><%= @stock_quote.name %> | <%= @stock_quote.symbol %></strong>
+    <strong> <%=@stock.get_quote['companyName']%> |<%= @stock_quote.symbol %> </strong>
   </div>
   <div class="card-body">
     <div class="row">
@@ -48,7 +48,7 @@
 </ul>
 <div class="tab-content">
   <div class="tab-pane active" id="1w" role="tabpanel" aria-labelledby="1w-tab">
-  <% @stock_history = StockQuote::Stock.history(@stock.ticker, (Date.today.-7), Date.today) %>
+  <% @stock_history = StockQuote::Stock.history(@stock.ticker, (Date.today.-5), Date.today) %>
     <% @stock_price_hash = {} %>
       <% @stock_history[:history].each do |day| %>
       <% @stock_price_hash[day[:date]] = day[:close] %>

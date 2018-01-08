@@ -55,4 +55,5 @@ class StocksController < ApplicationController
   def stock_params
     params.require(:stock).permit(:ticker, :shares, :sname, :name, :price)
   end
+
 end
