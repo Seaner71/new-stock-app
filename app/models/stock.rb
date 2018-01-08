@@ -15,8 +15,8 @@ class Stock < ApplicationRecord
      response = RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote")
      JSON.parse(response.body)
    end
-   def get_chart
-     response = RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/chart")
+   def get_chart(time = '1m')
+     response = RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/chart/#{time}")
      JSON.parse(response.body)
    end
 end
