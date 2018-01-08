@@ -8,4 +8,15 @@ class Stock < ApplicationRecord
    def upcase_fields
       self.ticker.upcase!
    end
+
+   #TODO create variable for prefix https://api.iextrading.com/1.0
+   # performs the GET request to get the quote from IEX
+   def get_quote
+     response = RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote")
+     JSON.parse(response.body)
+   end
+   def get_chart
+     response = RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/chart")
+     JSON.parse(response.body)
+   end
 end
