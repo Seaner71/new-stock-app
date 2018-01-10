@@ -23,6 +23,7 @@ class StocksController < ApplicationController
     get_stock
     @stock_quote = StockQuote::Stock.quote(@stock.ticker)
     @stock_test_hash = Hash[@account.stocks.group(:sname).sum(:shares).map { |k, v| [k, v * 5] }]
+    @financials = @stock.get_financials
   end
   def edit
     get_account
