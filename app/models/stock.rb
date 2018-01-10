@@ -34,7 +34,6 @@ class Stock < ApplicationRecord
    end
 
    ## performs the GET request to get Financial Information
-   #TODO break this method iinto several to get particular finacial Information
    def get_financials
      response = RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/financials")
      JSON.parse(response.body)
