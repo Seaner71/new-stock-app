@@ -1,7 +1,5 @@
 # Stock App
-Is a web application for user to track their different stock portfolios. All stock data is obtained from the stock_quote gem
-built by Ty Rauber https://github.com/tyrauber/stock_quote. A user can set up multiple accounts and monitor the value of each account,
-the percentage of each stock in the account and the percentage of each sector. A user can also get price chsrts fot stocks in their portfolio.
+Stock app is a web application for users to track their different stock portfolios (retirment, edcuation etc.). All stock data is obtained from the stock_quote gem built by Ty Rauber https://github.com/tyrauber/stock_quote. A user can set up multiple accounts and monitor the value of each account,the percentage of each stock in the account and the percentage of each sector. A user can also get price charts for stocks in their portfolio.
 
 This Stock app was developed in Ruby on Rails 5.1 and requires the installation of the follow non-rails standard gems:
 -	gem 'devise'
