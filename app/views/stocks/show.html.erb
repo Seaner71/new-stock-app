@@ -32,10 +32,10 @@
 <%#= Price chart tabs  %>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="1w-tab" data-toggle="tab" href="#1w" role="tab" aria-controls="1w" aria-selected="true">1W</a>
+    <a class="nav-link active" id="mtd-tab" data-toggle="tab" href="#mtd" role="tab" aria-controls="mtd" aria-selected="true">MTD</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="1m-tab" data-toggle="tab" href="#1m" role="tab" aria-controls="1m" aria-selected="false">1M</a>
+    <a class="nav-link" id="ytd-tab" data-toggle="tab" href="#ytd" role="tab" aria-controls="ytd" aria-selected="false">YTD</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="1y-tab" data-toggle="tab" href="#1y" role="tab" aria-controls="1y" aria-selected="false">1Y</a>
@@ -48,8 +48,8 @@
   </li>
 </ul>
 <div class="tab-content">
-  <div class="tab-pane active" id="1w" role="tabpanel" aria-labelledby="1w-tab">
-  <% @stock_history = StockQuote::Stock.history(@stock.ticker, (Date.today.-5), Date.today) %>
+  <div class="tab-pane active" id="mtd" role="tabpanel" aria-labelledby="mtd-tab">
+  <% @stock_history = StockQuote::Stock.history(@stock.ticker, (Date.today.beginning_of_month, Date.today) %>
     <% @stock_price_hash = {} %>
       <% @stock_history[:history].each do |day| %>
       <% @stock_price_hash[day[:date]] = day[:close] %>
@@ -57,8 +57,8 @@
       <%= line_chart (@stock_price_hash), xtitle: "Date", ytitle: "Price", height: "500px"  %>
 
   </div>
-  <div class="tab-pane" id="1m" role="tabpanel" aria-labelledby="1m-tab">
-    <% @stock_history = StockQuote::Stock.history(@stock.ticker, Date.today.months_ago(1), Date.today) %>
+  <div class="tab-pane" id="ytd" role="tabpanel" aria-labelledby="ytd-tab">
+    <% @stock_history = StockQuote::Stock.history(@stock.ticker, Date.today.beginning_of_month, Date.today) %>
       <% @stock_price_hash = {} %>
       <% @stock_history[:history].each do |day| %>
         <% @stock_price_hash[day[:date]] = day[:close] %>
